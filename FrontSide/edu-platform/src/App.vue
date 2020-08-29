@@ -1,60 +1,51 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+    <div class="header-box">
+      <img>
+      <div class="login-box">
+        <span>
+          <!-- icon -->
+          <img>
+        </span>
+        <span>로그인</span>
+        <span>회원가입</span>
       </div>
+    </div>
 
-      <v-spacer></v-spacer>
+    <div class="footer-box">
+      <div>UntactEdu / 서울시 동작구 상도1동</div>
+      <div>Tel. 010. 3601. 2779</div>
+      <div>Vaninside. all rights reserved</div>
+    </div>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+    <!-- <v-footer absolute class="font-weight-medium footer-box white--text">
+      <v-col class="text-center" cols="12">
+        <div>UntactEdu / 서울시 동작구 상도1동</div>
+        <div>Tel. 010. 3601. 2779</div>
+        <div>Vaninside. all rights reserved</div>
+      </v-col>
+    </v-footer> -->
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+
 
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
+  name: "App",
 
   data: () => ({
     //
   }),
 };
 </script>
+
+<style scoped>
+.footer-box {
+  background-color:rgb(64,64,64);
+  padding: 1rem;
+  text-align: center;
+  color:white;
+  font-size: 0.8rem;
+}
+</style>
