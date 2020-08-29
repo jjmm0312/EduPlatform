@@ -9,5 +9,4 @@ public class Eduplaftorm2020Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Eduplaftorm2020Application.class, args);
 	}
-
 }
