@@ -7,7 +7,7 @@ import NoticeAdd from '../components/NoticeRegister.vue'
 import NoticeList from '../components/NoticeList.vue'
 import LearningRate from '../components/LearningRate.vue'
 import MainPage from '../components/MainPage.vue'
-
+import LectureList from '../components/LectureList.vue'
 
 Vue.use(VueRouter)
 
@@ -37,6 +37,10 @@ const route = [
     path: '/learningRate',
     component: LearningRate,
   },
+  {
+    path:'/lectureList',
+    component:LectureList
+  }
 
   //   {
   //     path:'/loginProject',
