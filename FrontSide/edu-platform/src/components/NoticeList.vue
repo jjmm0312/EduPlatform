@@ -3,27 +3,60 @@
     <h1 id="main-title">공지사항</h1>
     <hr id="main-line" />
     <div id="notice-below-button">
-    <button id="regi_button" type="button" name="regi">글 작성</button>
+      <button v-bind:class="primebtn" @click="modifyNotice">글 작성</button>
     </div>
-    <table border="1">
-      <th>No.</th>
-      <th>제목</th>
-      <th>작성일</th>
-      <tr>
-        <!-- 첫번째 줄 시작 -->
-        <td>첫번째 칸</td>
-        <td>두번째 칸</td>
-        <td>두번째 칸</td>
-      </tr>
-      <!-- 첫번째 줄 끝 -->
-      <tr>
-        <!-- 두번째 줄 시작 -->
-        <td>첫번째 칸</td>
-        <td>두번째 칸</td>
-        <td>두번째 칸</td>
-      </tr>
-      <!-- 두번째 줄 끝 -->
-    </table>
+
+    <table class="table table-hover table-bordered" id="notice-table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">제목</th>
+              <th scope="col">작성일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2</td>
+              <td>학원생 여러분들에게 알려드립니다.</td>
+              <td>2020-08-29</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>학원생 여러분들에게 알려드립니다.</td>
+              <td>2020-08-29</td>
+            </tr>
+            <!-- <tr v-for="(data,index) in dataset" v-bind:key="index">
+            <td>{{data.name}}</td>
+            <td>{{data.memo}}</td>
+            <td>{{data.location}}</td>
+            <td>{{data.protocol}}</td>
+            <td>{{data.type}}</td>
+            <td>{{data.time}}</td>
+            <td>
+              <button v-on:click="selectDevice(index)" class="btn btn-primary">관리</button>
+            </td>
+            </tr>-->
+          </tbody>
+
+          <!-- 첫번째 줄 끝 -->
+        </table>
+    
+      <div class="container">
+			<div class="row">
+				<div class="col">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">4</a></li>
+						<li class="page-item"><a class="page-link" href="#">5</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
   </div>
 </template>
 
@@ -54,6 +87,7 @@ export default {
 #notice-below-button {
   display: flex;
   justify-content: flex-end;
+  margin: 0.5rem 0 0.5rem 0;
 }
 #notice-content {
   margin: 1rem 1rem 1rem 1rem;

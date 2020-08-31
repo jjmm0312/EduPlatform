@@ -1,6 +1,18 @@
 <template>
   <div id="main-text">
     <div id="first-line">
+      <div id="lecture-list">
+        <p id="text-lecture-list">모든 강좌 목록</p>
+        <div id="lecture-image">
+          <img id="left-arrow" :src="leftArrow" alt="My Image" />
+          <div id="image-box">
+            <img id="image-1" :src="sampleImage" alt="My Image" />
+            <img id="image-2" :src="sampleImage" alt="My Image" />
+            <img id="image-3" :src="sampleImage" alt="My Image" />
+          </div>
+          <img id="right-arrow" :src="rightArrow" alt="My Image" />
+        </div>
+      </div>
       <div id="main-table">
         <table class="table table-hover table-bordered" id="notice-table">
           <thead class="thead-light">
@@ -34,17 +46,6 @@
           <!-- 첫번째 줄 끝 -->
         </table>
       </div>
-
-      <div id="lecture-list">
-        <p>모든 강좌 목록</p>
-        <div id="lecture-image">
-          <img id="left-arrow" :src="leftArrow" alt="My Image" />
-          <img id="image-1" :src="sampleImage" alt="My Image" />
-          <img id="image-2" :src="sampleImage" alt="My Image" />
-          <img id="image-3" :src="sampleImage" alt="My Image" />
-          <img id="right-arrow" :src="rightArrow" alt="My Image" />
-        </div>
-      </div>
     </div>
     <br />
     <div id="banner" class>
@@ -74,6 +75,11 @@ export default {
 </script>
 
 <style scoped>
+#text-lecture-list{
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.5rem 0rem 0.5rem 0.5rem;
+}
 #main-text {
   margin: 3rem 20% 2rem 20%;
 }
@@ -82,7 +88,7 @@ export default {
 #first-line {
 }
 #main-table {
-  margin: 0px 5px 10px 0px;
+  margin: 2rem 5px 0.5rem 0px;
   height: 200px;
 }
 #notice-table {
@@ -99,7 +105,7 @@ export default {
   border-color: rgb(190, 190, 190);
 }
 
-#lecture-image {
+#image-box {
   display: flex;
   /* align-items: center;
    */
@@ -108,7 +114,17 @@ export default {
   background-color: rgb(248, 247, 247);
 }
 
+#lecture-image{
+    display: flex;
+    height: auto;
+    align-content: center;
+    align-items: center;
+    padding: 0 0.5rem 1rem 0.5rem;
+    justify-content: space-between;
+}
+
 #left-arrow {
+    /* margin-top: ; */
   height: 30px;
 }
 
