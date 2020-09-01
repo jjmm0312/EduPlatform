@@ -36,14 +36,14 @@ public class LectureController {
 	
 	@ApiOperation(value = "강좌 정보 조회", notes = "요청한 강좌 정보를 조회한다.")
 	@RequestMapping(value="/lecture-info", method=RequestMethod.POST)
-	public ResponseEntity<?> lectureInfo() {
+	public ResponseEntity<?> lectureInfo(int lectureNum) {
 		
 		return null;
 	}
 	
 	@ApiOperation(value = "강의 조회", notes = "요청한 강의 정보를 조회한다.")
 	@RequestMapping(value="/class-info", method=RequestMethod.POST)
-	public ResponseEntity<?> classInfo() {
+	public ResponseEntity<?> classInfo(int classNum) {
 		
 		return null;
 	}
