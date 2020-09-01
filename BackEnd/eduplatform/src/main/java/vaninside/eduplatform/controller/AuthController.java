@@ -42,8 +42,8 @@ import vaninside.eduplatform.service.MemberService;
 
 @Api(tags = {"1. User Auth"})
 @RestController
-//@RequestMapping("/member")
-public class MemberController {
+@RequestMapping("/auth")
+public class AuthController {
 	@Autowired
 	MemberService service;
 	
@@ -65,11 +65,10 @@ public class MemberController {
 		User user = userRepository.findByUsername("aaaaa");
 		return user.toString();
 	}
-
 	   
 	 @ApiOperation(value = "로그인", notes = "로그인을 한다.")
 	    @PostMapping("/signin")
-	    public ResponseEntity<?> authenticateUser(@ApiParam(value="로그인 정보", required=true) @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@ApiParam(value="로그인 정보", required=true) @RequestBody LoginRequest loginRequest) {
 	    	
 	    	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
 
@@ -85,7 +84,7 @@ public class MemberController {
 	    
 	 @ApiOperation(value = "회원가입", notes = "회원가입을 한다.")
 	    @PostMapping("/signup")
-	    public ResponseEntity<?> registerUser(@ApiParam(value="회원가입 정보", required=true) @RequestBody SignUpRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@ApiParam(value="회원가입 정보", required=true) @RequestBody SignUpRequest signUpRequest) {
 	        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
 	            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
 	                    HttpStatus.BAD_REQUEST);
@@ -111,5 +110,4 @@ public class MemberController {
 
 	        return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
 	    }
-
 }
