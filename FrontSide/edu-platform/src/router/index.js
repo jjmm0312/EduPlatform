@@ -8,6 +8,8 @@ import NoticeList from '../components/NoticeList.vue'
 import LearningRate from '../components/LearningRate.vue'
 import MainPage from '../components/MainPage.vue'
 import LectureList from '../components/LectureList.vue'
+import Lecture from '../components/Lecture.vue'
+import ClassDetail from '../components/ClassDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +42,14 @@ const route = [
   {
     path:'/lectureList',
     component:LectureList
+  },
+  {
+    path:'/lectureDetail',
+    component:Lecture
+  },
+  {
+    path:'/classDetail',
+    component:ClassDetail,
   }
 
   //   {

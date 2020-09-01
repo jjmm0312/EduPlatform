@@ -44,6 +44,7 @@ export default {
   methods: {
     loginEdu() {
       console.log("Login Button Pressed");
+      // axios -> post를 날리면 끝!
     },
   },
 };

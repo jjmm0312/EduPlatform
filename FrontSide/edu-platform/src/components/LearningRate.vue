@@ -2,7 +2,7 @@
   <div id="main-text">
     <h1 id="main-title">학습현황</h1>
     <hr id="main-line" />
-    <table class="table table-hover">
+    <table class="table table-hover table-bordered">
       <thead class="thead-light">
         <tr>
           <th scope="col">총 강좌 수</th>
@@ -32,17 +32,30 @@
 
       <!-- 첫번째 줄 끝 -->
     </table>
-    <hr>
+    <hr />
     <div id="lecture_list">
       <div id="lecture-1">
-        <img class="class-img"  :src="sampleImg" alt="My Image" />
-        <div>
-          <p>Class Title</p>
-          <p>
-            학습현황
-            <span>12 / 25</span>
-          </p>
-          <progress value="20" max="100"></progress>
+        <img class="class-img" :src="sampleImg" alt="My Image" />
+        <div id="detail-box">
+          <p id="detail-name-text">Class Title</p>
+          <span id="detail-progress">
+            <p>
+              학습현황
+              <span>12</span> /
+              <span>25</span>
+            </p>
+            <progress id="progress-bar" value="20" max="100"></progress>
+            <!-- <div class="progress">
+              <div
+                class="progress-bar progress-bar-success"
+                role="progressbar"
+                aria-valuenow="40"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width:40%"
+              >40% Complete (success)</div>
+            </div> -->
+          </span>
         </div>
       </div>
     </div>
@@ -67,8 +80,31 @@ export default {
 </script>
 
 <style scoped>
-.class-img{
-    margin: 1rem 1rem 1rem 1rem;
+#progress-bar {
+  width: 100%;
+}
+#detail-progress {
+  margin: 0rem 0.5rem 0.5rem 0.5rem;
+  overflow: scroll;
+  font-weight: bold;
+  width: 100%;
+}
+#detail-name-text {
+  margin: 2rem 0.5rem 0.5rem 0.5rem;
+  overflow: scroll;
+  font-weight: bold;
+  font-size: 2rem;
+}
+#detail-box {
+  display: flex;
+  width: 100%;
+  padding-right: 3rem;
+  padding-bottom: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.class-img {
+  margin: 1rem 1rem 1rem 1rem;
 }
 .below-button {
   margin: 0 0.5rem 0 0;
