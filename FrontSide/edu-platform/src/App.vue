@@ -85,12 +85,14 @@ export default {
 }
 .login-box {
   margin: 0;
+  width: 200px;
   padding: 0;
   display: flex;
   /* flex-wrap:inherit; */
 }
 #user-icon-box{
-  width: 5%;
+  /* width: 5%; */
+  width: 30%;
 }
 .menu-box {
   background-color: rgb(25, 94, 76);
@@ -103,7 +105,8 @@ export default {
 }
 .login-box-el {
   padding: 0 0 0 0rem;
-  width: 5%;
+  /* width: 5%; */
+  width: 1rem;
 }
 .header-box {
   margin: 2rem 2rem 2rem 2rem;

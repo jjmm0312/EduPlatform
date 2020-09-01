@@ -52,6 +52,7 @@ export default {
 }
 #notice-content {
   margin: 1rem 1rem 1rem 1rem;
+  min-height: 30vh;
 }
 #notice-title {
   font-weight: bold;

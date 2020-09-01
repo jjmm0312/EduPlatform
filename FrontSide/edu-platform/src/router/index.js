@@ -10,6 +10,7 @@ import MainPage from '../components/MainPage.vue'
 import LectureList from '../components/LectureList.vue'
 import Lecture from '../components/Lecture.vue'
 import ClassDetail from '../components/ClassDetail.vue'
+import SignUpPage from '../components/SignUpPage.vue'
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,10 @@ const route = [
   {
     path:'/classDetail',
     component:ClassDetail,
+  },
+  {
+    path:'/signup',
+    component:SignUpPage,
   }
 
   //   {
