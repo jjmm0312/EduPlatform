@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
             .antMatchers("/signin")
                 .permitAll()
-            .antMatchers("/")
+            .antMatchers("/**")
                 //.hasRole("STUDENT")
             .permitAll() // 현재 테스트 단계이므로 모두 허가합니다.
             .anyRequest()
