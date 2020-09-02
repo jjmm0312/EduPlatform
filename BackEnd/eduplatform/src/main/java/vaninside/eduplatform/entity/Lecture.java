@@ -11,10 +11,9 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
-//@Entity
-//@Table (name = "lecture")
+@Entity
+@Table (name = "lecture")
 public class Lecture {
-	/*
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	int id;
@@ -28,8 +27,13 @@ public class Lecture {
 	String video;
 	String document;
 	
-	public Lecture() {
-		
+	public Lecture() {}
+	
+	public Lecture(String title, String description, String video, String document, Course course) {
+		this.title = title;
+		this.description = description;
+		this.video = video;
+		this.document = document;
+		this.course = course;
 	}
-	*/
 }

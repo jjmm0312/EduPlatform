@@ -16,9 +16,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 
-@Data // lombok 자동 setter getter tostring 설정 위해서
+@Data 
 
-@Entity // 특정 db 테이블과 매핑되는 클래스에 붙이는 어노테이션
+@Entity 
 @Table(name = "course")
 
 public class Course {

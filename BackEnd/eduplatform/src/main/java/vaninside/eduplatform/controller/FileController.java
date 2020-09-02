@@ -1,8 +1,11 @@
 package vaninside.eduplatform.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,25 +23,34 @@ public class FileController {
 	@Autowired
 	FileService fileService;
 	
-	/*
-	public String upload(
-			@RequestParam("file") MultipartFile file) {
-		String url = fileService.upload(file);
-		return url;
-	}
-	*/
 	
 	@ApiOperation(value = "파일 업로드", notes = "파일을 업로드한다.")
 	@RequestMapping( "/upload" )
 	public List<String> upload(@RequestParam("file") List<MultipartFile> files) throws Exception {
 		return fileService.fileUpload(files);	
 	}
-	
-	/*
-	@ApiOperation(value = "파일 다운로드", notes = "파일을 다운로드한다.")
-	@RequestMapping( "/upload" )
-	public List<String> download(@RequestPart List<MultipartFile> files) throws Exception {
-		//return fileService.upload(files);	
+
+	public ResponseEntity<Resource> download() {
+		 // Load file as Resource
+        Resource resource = service.loadFileAsResource(fileName);
+ 
+        // Try to determine file's content type
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            logger.info("Could not determine file type.");
+        }
+ 
+        // Fallback to the default content type if type could not be determined
+        if(contentType == null) {
+            contentType = "application/octet-stream";
+        }
+ 
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
 	}
-	*/
 }

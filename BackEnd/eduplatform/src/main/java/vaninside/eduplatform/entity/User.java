@@ -17,6 +17,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import vaninside.eduplatform.security.UserPrincipal;
 
@@ -28,10 +30,13 @@ public class User{
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	private String username;
 	private String email;
+	@JsonIgnore
 	private String password;
 	private String name;
+	@JsonIgnore
 	private String role;
     
 	

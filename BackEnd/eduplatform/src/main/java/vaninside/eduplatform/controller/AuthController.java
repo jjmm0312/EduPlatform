@@ -70,7 +70,7 @@ public class AuthController {
 	@ApiOperation(value = "프로젝트 초기화", notes = "초기화 api 입니다.")
 	@GetMapping(value = "/init")
 	@ResponseStatus(HttpStatus.OK)
-	public String HelloWorld() { 
+	public String init() { 
 		if(!init) {
 		 init=true;
 		 service.init();
