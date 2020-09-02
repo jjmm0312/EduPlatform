@@ -2,14 +2,11 @@ package vaninside.eduplatform.payload;
 
 public class SignUpRequest {
     private String name;
-
     private String username;
-
     private String email;
-
     private String password;
-    
     private String role;
+    private String code;
 
     public String getName() {
         return name;
@@ -49,5 +46,13 @@ public class SignUpRequest {
     
     public String getRole() {
     	return role;
+    }
+    
+    public void setCode(String code){
+    	this.code = code;
+    }
+    
+    public String getCode() {
+    	return code;
     }
 }

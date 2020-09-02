@@ -22,7 +22,7 @@ import vaninside.eduplatform.security.JwtAuthenticationEntryPoint;
 import vaninside.eduplatform.security.JwtAuthenticationFilter;
 import vaninside.eduplatform.security.JwtTokenProvider;
 import vaninside.eduplatform.security.MyUserDetailService;
-import vaninside.eduplatform.service.MemberService;
+import vaninside.eduplatform.service.AuthService;
 
 @Configuration
 @EnableWebSecurity
@@ -81,11 +81,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/**/*.css",
                 "/**/*.js")
                 .permitAll()
-            .antMatchers("/signup")
+            .antMatchers("/auth/signup")
                 .permitAll()
-            .antMatchers("/signin")
+            .antMatchers("/auth/signin")
                 .permitAll()
-            .antMatchers("/")
+            .antMatchers("/**")
                 //.hasRole("STUDENT")
             .permitAll() // 현재 테스트 단계이므로 모두 허가합니다.
             .anyRequest()
