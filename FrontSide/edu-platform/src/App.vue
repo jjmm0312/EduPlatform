@@ -5,12 +5,11 @@
       <span>UntactEdu</span>
       <!-- <span>UntactEdu</span> -->
       <div class="login-box">
-        <span id="user-icon-box">
+        <!-- <span id="user-icon-box"> -->
         <img id="user-icon" :src="require('./assets/icon/user.png')" />
-        </span>
+        <!-- </span> -->
         <span class="login-box-el">로그인</span>
         <span class="login-box-el">회원가입</span>
-        
       </div>
     </div>
 
@@ -83,16 +82,42 @@ export default {
   width: 100%;
   margin-top: -5%;
 }
+.header-box {
+  margin: 2rem 3rem 2rem 5rem;
+  display: flex;
+  /* align-items: center; */
+  /* align-content: space-between; */
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+}
 .login-box {
   margin: 0;
-  width: 200px;
+  /* flex: 1 1; */
+  /* width: 200px; */
   padding: 0;
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
   /* flex-wrap:inherit; */
 }
 #user-icon-box{
   /* width: 5%; */
   width: 30%;
+}
+.login-box-el {
+  padding: 0 0 0 0rem;
+  margin: 0rem 0.5rem 0rem 0.5rem;
+  /* width: 5%; */
+  /* width: 1rem; */
+}
+#user-icon {
+  /* display: inline; */
+  /* width: 100%; */
+  width:auto;
+  height: 30px;
+  margin-right: 0.5rem;
 }
 .menu-box {
   background-color: rgb(25, 94, 76);
@@ -103,29 +128,14 @@ export default {
   flex-wrap: wrap;
   font-weight: bold;
 }
-.login-box-el {
-  padding: 0 0 0 0rem;
-  /* width: 5%; */
-  width: 1rem;
-}
-.header-box {
-  margin: 2rem 2rem 2rem 2rem;
-  display: flex;
-  /* align-items: center; */
-  /* align-content: space-between; */
-  justify-content: space-between;
-  /* flex-wrap: wrap; */
-}
+
+
 #logo-icon {
   display: inline;
   width: 5%;
   height: auto;
 }
-#user-icon {
-  display: inline;
-  width: 100%;
-  height: auto;
-}
+
 .footer-box {
   background-color: rgb(64, 64, 64);
   padding: 1rem;
