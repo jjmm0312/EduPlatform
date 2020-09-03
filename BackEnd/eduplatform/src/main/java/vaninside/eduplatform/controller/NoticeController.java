@@ -43,13 +43,6 @@ public class NoticeController {
 //		//return "Done";
 //	}
 	
-//	@ApiOperation(value = "메인페이지 공지사항 리스트 조회",notes="공지사항 리스트 조회, 메인에서 쓸 수 있도록 5개만 가져옴")
-//	@RequestMapping(value = "/noticeMain",method=RequestMethod.GET)
-//	public String getNoticeMain() {
-//		List<Notice> result = noticeService.getMainNoticeList();
-//		return "Main Notice";
-//	}
-	
 	@ApiOperation(value = "공지사항 글 상세", notes="공지사항 글 상세 조회용 API")
 	@GetMapping("/noticeDetail")
 	public Optional<Notice> getDetailNotice(@RequestParam Map<String, String> param) {
