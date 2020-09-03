@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import vaninside.eduplatform.dao.CourseRepository;
 import vaninside.eduplatform.dao.LectureRepository;
 import vaninside.eduplatform.dao.RegisterRepository;
+import vaninside.eduplatform.dao.UserRepository;
 import vaninside.eduplatform.entity.Course;
 import vaninside.eduplatform.entity.Lecture;
 import vaninside.eduplatform.entity.Register;
@@ -20,6 +21,8 @@ import vaninside.eduplatform.security.UserPrincipal;
 
 @Service
 public class CourseService {
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	CourseRepository courseRepository;
@@ -30,8 +33,8 @@ public class CourseService {
 	@Autowired
 	RegisterRepository regiRepository;
 	
-	public void courseCreate(UserPrincipal user, CourseRequest courseRequest) {
-		Course course = new Course(courseRequest.getTitle(), courseRequest.getDescription(), courseRequest.getPicture(), user.getUser());
+	public void courseCreate(CourseRequest courseRequest) {
+		Course course = new Course(courseRequest.getTitle(), courseRequest.getDescription(), courseRequest.getPicture(), userRepository.findById(courseRequest.getUserid()).get());
         courseRepository.save(course);  
 	}
 	
@@ -41,8 +44,8 @@ public class CourseService {
 		lectureRepository.save(lecture);
 	}
 	
-	public void register(UserPrincipal user, int num) {
-		Register regi = new Register(courseRepository.findById(num), user.getUser());
+	public void register(int userid, int num) {
+		Register regi = new Register(courseRepository.findById(num), userRepository.findById(userid).get());
 		regiRepository.save(regi);
 	}
 	

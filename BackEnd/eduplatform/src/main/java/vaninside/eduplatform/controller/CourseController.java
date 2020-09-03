@@ -80,8 +80,8 @@ public class CourseController {
 	@ApiOperation(value = "강좌 등록", notes = "새로운 강좌를 등록한다. status 200 응답")
 	@RequestMapping(value="/course-create", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public void courseCreate(@ApiParam(value="강좌 정보", required=true) @AuthenticationPrincipal UserPrincipal user, @RequestBody CourseRequest courseRequest) {
-		service.courseCreate(user, courseRequest);
+	public void courseCreate(@ApiParam(value="강좌 정보", required=true) /*@AuthenticationPrincipal UserPrincipal user*/ @RequestBody CourseRequest courseRequest) {
+		service.courseCreate(courseRequest);
 	}
 
 	@ApiOperation(value = "강의 등록", notes = "강의를 등록한다.")
@@ -100,8 +100,8 @@ public class CourseController {
 	@ApiOperation(value = "수강 신청", notes = "수강 신청한다.")
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public void register(@ApiParam(value="강의 번호", required=true) @AuthenticationPrincipal UserPrincipal user, int num) {
-		service.register(user, num);
+	public void register(@ApiParam(value="강의 번호", required=true) /*@AuthenticationPrincipal UserPrincipal user*/int userid, int num) {
+		service.register(userid, num);
 	}
 	
 	@ApiOperation(value = "수강 신청 승인 / 삭제", notes = "수강 신청 승인 및 삭제.")
