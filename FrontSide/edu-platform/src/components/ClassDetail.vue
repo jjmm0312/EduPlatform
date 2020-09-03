@@ -1,6 +1,6 @@
 <template>
   <div id="main-text">
-    <h1 id="main-title">도커란 무엇인가?</h1>
+    <h1 id="main-title">{{title}}</h1>
     <hr id="main-line" />
 
     <!-- <iframe
@@ -21,17 +21,16 @@
 
     <hr>
     <p>
-      도커란 무엇인가?
+      {{title}}
       <br />
-      <br />이번 강의에서는 도커에 대해서 알아보는 강의입니다.
-    </p>
+      <br />{{content}}   </p>
 
     <br />
     <br />
 
     <hr>
     <span id="attach-text">첨부</span>
-    <a id="attachment" href="https://www.youtube.com/watch?v=Yw5YZQXYDro">Docker_class_01.pdf</a>
+    <a id="attachment" href="https://www.youtube.com/watch?v=Yw5YZQXYDro">{{document}}</a>
 
     <br />
     <br />
@@ -45,9 +44,33 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+
 export default {
+  mounted() {
+      var vm = this;
+
+      axios
+        .get("http://" + IP.IP + ":8080/course/lecture-info", {
+          params: { num : vm.lectureid },
+          timeout: 10000,
+        })
+        .then((res) => {
+          vm.title = res.data.title;
+          vm.content = res.data.description;
+          vm.document = res.data.document; // 이름으로 수정해야함.
+          vm.video = res.data.video; // 비디오로 수정해야함.
+        });
+
+  },
   data() {
     return {
+      title:"",
+      content:"",
+      document:"",
+      video:"",
+      lectureid:1,
       videoSource: require("../../static/video/demo.mp4"),
       textinput: "form-control",
       sampleImg: require("../../static/img/classImage.png"),

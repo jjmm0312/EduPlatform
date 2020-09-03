@@ -10,37 +10,49 @@
         v-bind:class="textinput"
         type="text"
         id="adminid"
-        v-model="loginID"
+        v-model="inputTitle"
         title="managerid"
         placeholder="제목을 입력해 주세요"
       />
-      </div></div>
-      <span id="date-box">
-        작성일 :
-        <span id="regi_date">2020-08-30</span>
-      </span>
+      </div>
+        </div>
     </div>
-
-    <textarea placeholder="내용을 입력해주세요" class="form-control" id="content" name="name" rows="8" cols="80"></textarea>
+    <textarea placeholder="내용을 입력해주세요" class="form-control" id="content" name="name" rows="8" cols="80" v-model="inputContent"></textarea>
     <hr id="page_bottom_line" />
     <div id="notice-below-button">
-      <button v-bind:class="primebtn" @click="modifyNotice">완료</button>
+      <button v-bind:class="primebtn" @click="create">완료</button>
     </div>
   </div>
 </template>
 
 <script>
+
+import axios from "axios";
+import IP from "../../static/IP";
+
 export default {
   data() {
     return {
+      inputContent:"",
+      inputTitle:"",
       textinput: "form-control",
       primebtn:
         "row-sm-1 col-sm-1.5 btn btn-primary disabled btn-sm below-button",
     };
   },
   methods: {
-    loginEdu() {
-      console.log("Login Button Pressed");
+    create() {
+
+       axios
+        .post("http://" + IP.IP + ":8080/notice/newNotice", {
+          title:this.inputTitle,
+          content:this.inputContent,
+          timeout: 10000,
+        })
+        .then((res) => {
+          console.log("Create Notice Fin.");
+          console.log(res);
+        });
     },
   },
 };

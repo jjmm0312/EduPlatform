@@ -3,19 +3,19 @@
     <h1 id="main-title">공지사항</h1>
     <hr id="main-line" />
     <div id="title-box">
-      <span id="notice-title">[공지] 학원 개설에 대해 안내드립니다.</span>
+      <span id="notice-title">{{title}}</span>
       <span>
         작성일 :
-        <span id="regi_date">2020-08-30</span>
+        <span id="regi_date">{{createdAt}}</span>
       </span>
     </div>
 
     <hr />
-    <p id="notice-content">학원 개설을 축하드립니다. 학원 개설을 위해서는 다음과 같은 절차가 필요합니다.</p>
+    <p id="notice-content">{{content}}</p>
     <hr id="page_bottom_line" />
     <div id="notice-below-button">
-    <button v-bind:class="primebtn" @click="modifyNotice">수정</button>
-    <button v-bind:class="primebtn" @click="listNotice">목록</button>
+    <button v-bind:class="primebtn" @click="edit">수정</button>
+    <button v-bind:class="primebtn" @click="cancel">목록</button>
     </div>
 <!-- 
     <button id="edit_button" type="button" name="edit">수정</button>
@@ -24,16 +24,40 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+
 export default {
+  mounted(){
+      var vm = this;
+
+      axios
+        .get("http://" + IP.IP + ":8080/notice/noticeDetail", {
+          params: { noticeID : vm.noticeid },
+          timeout: 10000,
+        })
+        .then((res) => {
+          vm.title = res.data.title;
+          vm.content = res.data.content;
+          vm.createdAt = res.data.time;
+        });
+  },
   data() {
     return {
+      noticeid:1,
+      title:"",
+      createdAt:"",
+      content:"",
       primebtn: "row-sm-1 col-sm-1.5 btn btn-primary disabled btn-sm below-button",
     };
   },
   methods: {
-    loginEdu() {
-      console.log("Login Button Pressed");
+    edit() {
+      console.log("Move to Edit Page.");
     },
+    cancel() {
+      console.log("cancel. move page.");
+    }
   },
 };
 </script>

@@ -3,48 +3,33 @@
     <div id="class-title-bar">
       <img :src="sampleImg" alt="My Image" />
       <div id="class-info-text">
-        <h1><strong>Class Title</strong></h1>
+        <h1><strong>{{lectureTitle}}</strong></h1>
         <p>
           강사 :
-          <span>이 철</span>
+          <span>{{teacher}}</span>
         </p>
-        <p>class description</p>
+        <p>{{description}}</p>
       </div>     
       </div>
 
 <div id="below-button">
-<button v-bind:class="primebtn" @click="modifyNotice">수강 신청</button>
+<button v-bind:class="primebtn" @click="register">수강 신청</button>
     </div>
 
     <div id="below-box">
       <table class="table table-hover table-bordered" id="notice-table">
           <thead class="thead-light">
             <tr>
-              <th colspan="2" scope="col"><strong>Chapter 1.</strong></th>
+              <th colspan="2" scope="col"><strong>강의 목록</strong></th>
               <!-- <th scope="col">제목</th>
               <th scope="col">작성일</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td style="width: 15%; text-align:center;">Class 01.</td>
-              <td style="width: 85%">도커란 무엇인가?</td>
+             <tr v-for="(data,index) in dataset" v-bind:key="index">
+            <td style="width: 15%;">Class {{index+1}} .{{data.title}}</td>
             </tr>
-            <tr>
-              <td style="width: 15%; text-align:center;">Class 02.</td>
-              <td>도커 설치하기</td>
-            </tr>
-            <!-- <tr v-for="(data,index) in dataset" v-bind:key="index">
-            <td>{{data.name}}</td>
-            <td>{{data.memo}}</td>
-            <td>{{data.location}}</td>
-            <td>{{data.protocol}}</td>
-            <td>{{data.type}}</td>
-            <td>{{data.time}}</td>
-            <td>
-              <button v-on:click="selectDevice(index)" class="btn btn-primary">관리</button>
-            </td>
-            </tr>-->
+           
           </tbody>
 
           <!-- 첫번째 줄 끝 -->
@@ -54,9 +39,42 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+
+
 export default {
+  mounted(){
+      var vm = this;
+
+      axios
+        .get("http://" + IP.IP + ":8080/course/course-info", {
+          params: { num : vm.courseid },
+          timeout: 10000,
+        })
+        .then((res) => {
+          vm.lectureTitle = res.data.title;
+          vm.description = res.data.description;
+          vm.teacher = res.data.teacher.name;
+        });
+
+        axios
+        .get("http://" + IP.IP + ":8080/course/lecture-list", {
+          params: { num : vm.courseid },
+          timeout: 10000,
+        })
+        .then((res) => {
+            console.log(res);
+            vm.dataset = res.data;
+          });
+  },
   data() {
     return {
+       dataset:[],
+      courseid:1,
+      lectureTitle:"",
+      teacher:"",
+      description:"",
       textinput: "form-control",
       sampleImg: require("../../static/img/classImage.png"),
       primebtn:
@@ -64,8 +82,20 @@ export default {
     };
   },
   methods: {
-    loginEdu() {
-      console.log("Login Button Pressed");
+    register() {
+      console.log("register course");
+      var vm = this;
+
+      axios
+        .get("http://" + IP.IP + ":8080/course/register", {
+          params: { num : vm.courseid },
+          timeout: 10000,
+          // 테스트 아직 안함.
+        })
+        .then((res) => {
+          console.log(res.data);
+          console.log("register Success");
+        });
     },
   },
 };

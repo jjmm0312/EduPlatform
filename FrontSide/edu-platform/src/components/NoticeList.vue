@@ -3,7 +3,7 @@
     <h1 id="main-title">공지사항</h1>
     <hr id="main-line" />
     <div id="notice-below-button">
-      <button v-bind:class="primebtn" @click="modifyNotice">글 작성</button>
+      <button v-bind:class="primebtn" @click="register">글 작성</button>
     </div>
 
     <table class="table table-hover table-bordered" id="notice-table">
@@ -15,27 +15,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>2</td>
-              <td>학원생 여러분들에게 알려드립니다.</td>
-              <td>2020-08-29</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>학원생 여러분들에게 알려드립니다.</td>
-              <td>2020-08-29</td>
-            </tr>
-            <!-- <tr v-for="(data,index) in dataset" v-bind:key="index">
-            <td>{{data.name}}</td>
-            <td>{{data.memo}}</td>
-            <td>{{data.location}}</td>
-            <td>{{data.protocol}}</td>
-            <td>{{data.type}}</td>
+             <tr v-for="(data,index) in dataset" v-bind:key="index">
+            <td>{{data.id}}</td>
+            <td>{{data.title}}</td>
             <td>{{data.time}}</td>
-            <td>
-              <button v-on:click="selectDevice(index)" class="btn btn-primary">관리</button>
-            </td>
-            </tr>-->
+            </tr>
           </tbody>
 
           <!-- 첫번째 줄 끝 -->
@@ -61,15 +45,32 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+
 export default {
+  mounted() {
+      var vm = this;
+      var pageid = 0;
+
+      axios
+        .get("http://" + IP.IP + ":8080/notice/noticeList", {
+          params: { size:10, page:pageid },
+          timeout: 10000,
+        })
+        .then((res) => {
+            vm.dataset = res.data.content;
+          });
+  },
   data() {
     return {
+      dataset:[],
       primebtn:
         "row-sm-1 col-sm-1.5 btn btn-primary disabled btn-sm below-button",
     };
   },
   methods: {
-    loginEdu() {
+    register() {
       console.log("Login Button Pressed");
     },
   },
