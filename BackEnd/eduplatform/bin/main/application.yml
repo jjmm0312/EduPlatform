@@ -1,7 +1,7 @@
 spring:
   datasource:
-    password: 1234
-    url: jdbc:mysql://localhost:3306/untactedu?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    password: dlcjf2779!
+    url: jdbc:mysql://101.101.217.226:3306/untactedu?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
   jpa:
     hibernate:

@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 
 @Data
+
 @Entity
 @Table(name = "test")
 public class User{
