@@ -22,7 +22,8 @@ const route = [
   },
   {
     path: '/login',
-    component: LoginPage
+    component: LoginPage,
+    name:'login',
   },
   {
     path: '/noticeDetail',
@@ -55,6 +56,7 @@ const route = [
   {
     path:'/signup',
     component:SignUpPage,
+    name:"signup"
   }
 
   //   {

@@ -1,15 +1,17 @@
 <template>
   <v-app>
     <div class="header-box">
-      <!-- <img id="logo-icon" :src="require('./assets/icon/user.png')"/> -->
+      <div>
+      <img id="logo-icon" :src="require('../static/img/logo.png')"/>
       <span>UntactEdu</span>
+      </div>
       <!-- <span>UntactEdu</span> -->
       <div class="login-box">
         <!-- <span id="user-icon-box"> -->
         <img id="user-icon" :src="require('./assets/icon/user.png')" />
         <!-- </span> -->
-        <span class="login-box-el">로그인</span>
-        <span class="login-box-el">회원가입</span>
+        <span v-on:click="loginButton" class="login-box-el">로그인</span>
+        <span v-on:click="signupButton" class="login-box-el">회원가입</span>
       </div>
     </div>
 
@@ -39,7 +41,26 @@
 </template>
 
 <script>
+import { EventBus } from "./utils/event-bus.js";
+import axios from 'axios';
+import IP from "../static/IP.json";
+
 export default {
+  created() {
+    axios
+      .get("http://" + IP.IP + ":8080/auth/init", {
+        timeout: 10000, // 1초 이내에 응답이 없으면 에러 처리
+      })
+      .then((res) => {
+        console.log(res);
+
+        // this.dataset = res.data.payload;
+      });
+
+      EventBus.$on('login-success',()=>{
+        console.log("Login Event Catch");
+      }); // Login success message
+  },
   name: "App",
   data: () => ({
     ifStudent: false,
@@ -52,6 +73,15 @@ export default {
     titleImg: require("../static/img/titleJimin.jpeg"),
   }),
   methods: {
+    signupButton(){
+      console.log("Signup Button Pressed");
+      this.$router.push({name:"signup"}).catch(()=>{});
+    },
+    loginButton(){
+      console.log("Login Button Pressed");
+      // vm.$router.push({name:"main",params:{id:adminID}}).catch(() => {});
+      this.$router.push({name:"login"}).catch(() => {});
+    },
     changeAuth(auth) {
       this.ifStudent = this.ifTeacher = this.ifAdmin = this.ifNonmeber = false;
       if (auth == 0) {

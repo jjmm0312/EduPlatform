@@ -32,6 +32,10 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+import { EventBus } from "../utils/event-bus";
+
 export default {
   data() {
     return {
@@ -45,6 +49,18 @@ export default {
     loginEdu() {
       console.log("Login Button Pressed");
       // axios -> post를 날리면 끝!
+      var vm = this;
+      axios
+        .post("http://" + IP.IP + ":8080/auth/signin", {
+          username: vm.loginID,
+          password: vm.loginPass,
+          timeout: 10000,
+        })
+        .then((res) => {
+          if (res.data.status == 0)
+            alert("로그인 오류입니다. 아이디와 비밀번호를 확인하세요.");
+          else EventBus.$emit("login-success");
+        });
     },
   },
 };
