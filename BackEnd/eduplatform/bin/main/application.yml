@@ -9,3 +9,8 @@ spring:
     show-sql: true
   jwt:
     secret: jimin
+  servlet:
+    enabled: true
+    max-file-size: 1000MB
+    max-request-size: 1000MB
+   
