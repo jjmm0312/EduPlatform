@@ -28,7 +28,7 @@ public class JwtTokenProvider {
 	    @Value("spring.jwt.secret")
 	    private String jwtSecret;
 	    
-	    private int jwtExpirationInMs = 1000 * 60 * 60; // 1시간만 토큰 유효
+	    private int jwtExpirationInMs = 6000 * 60 * 60; // 6시간만 토큰 유효
 	    UserDetailsService userDetailsService;
 
 	    public String generateToken(Authentication authentication) {
@@ -37,8 +37,10 @@ public class JwtTokenProvider {
 	        Date now = new Date();
 	        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
+	        System.out.println(userPrincipal.tokenInfo());
+	        
 	        return Jwts.builder()
-	                .setSubject(Long.toString(userPrincipal.getId()))
+	                .setSubject(userPrincipal.tokenInfo())
 	                .setIssuedAt(new Date())
 	                .setExpiration(expiryDate)
 	                .signWith(SignatureAlgorithm.HS512, jwtSecret)
