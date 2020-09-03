@@ -9,6 +9,11 @@
       <option value>학생</option>
       <option value>강사</option>
     </select>
+
+    <!-- <select v-on:change="getPredict" class="combo" v-model="selected">
+      <option value>학생</option>
+      <option value>강사</option>
+        </select> -->
     </div>
     <br />
 

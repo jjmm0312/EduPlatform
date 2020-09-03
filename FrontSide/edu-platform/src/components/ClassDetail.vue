@@ -64,13 +64,14 @@ export default {
         });
 
   },
+  props:['id'],
   data() {
     return {
       title:"",
       content:"",
       document:"",
       video:"",
-      lectureid:1,
+      lectureid:this.id,
       videoSource: require("../../static/video/demo.mp4"),
       textinput: "form-control",
       sampleImg: require("../../static/img/classImage.png"),

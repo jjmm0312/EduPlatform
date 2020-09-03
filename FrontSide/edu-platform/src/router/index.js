@@ -29,15 +29,19 @@ const route = [
   },
   {
     path: '/noticeDetail',
-    component: NoticeDetail
+    component: NoticeDetail,
+    name:'noticeDetail',
+    props:true,
   },
   {
     path: '/noticeRegister',
     component: NoticeAdd,
+    name:'noticeNew'
   },
   {
     path: '/noticeList',
     component: NoticeList,
+    name:'noticeList'
   },
   {
     path: '/learningRate',
@@ -49,11 +53,15 @@ const route = [
   },
   {
     path:'/lectureDetail',
-    component:Lecture
+    component:Lecture,
+    name:'lectureDetail',
+    props:true,
   },
   {
     path:'/classDetail',
     component:ClassDetail,
+    name:'classDetail',
+    props:true
   },
   {
     path:'/signup',

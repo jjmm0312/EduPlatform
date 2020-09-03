@@ -6,9 +6,10 @@
         <div id="lecture-image">
           <img id="left-arrow" :src="leftArrow" alt="My Image" />
           <div id="image-box">
-            <img id="image-1" :src="sampleImage" alt="My Image" />
+            <img @click="lectureDetail(lecture.id)"  class="image-lecture" v-for="(lecture,index) in lectureData" v-bind:key="index"  :src="sampleImage" alt="My Image"/>
+            <!-- <img id="image-1" :src="sampleImage" alt="My Image" />
             <img id="image-2" :src="sampleImage" alt="My Image" />
-            <img id="image-3" :src="sampleImage" alt="My Image" />
+            <img id="image-3" :src="sampleImage" alt="My Image" /> -->
           </div>
           <img id="right-arrow" :src="rightArrow" alt="My Image" />
         </div>
@@ -21,8 +22,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(data,index) in dataset" v-bind:key="index">
-            <td>{{data.name}}</td>
+            <tr v-for="(data,index) in noticeData" v-bind:key="index">
+              <td>{{data.title}}</td>
             </tr>
           </tbody>
 
@@ -39,14 +40,35 @@
 </template>
 
 <script>
+import axios from "axios";
+import IP from "../../static/IP";
+
 export default {
   mounted() {
     // 1. 공지사항을 가져와야 함
+    var vm = this;
+    axios
+      .get("http://" + IP.IP + ":8080/notice/noticeList", {
+        params: { size: 3, page: 0 },
+        timeout: 10000,
+      })
+      .then((res) => {
+        vm.noticeData = res.data.content
+      });
     // 2. 상황에 맞게, 강좌목록인지, 아닌지 판단해야 함.
+    axios
+      .get("http://" + IP.IP + ":8080/course/course-list", {
+        params: { size: 3, page: 0 },
+        timeout: 10000,
+      })
+      .then((res) => {
+        vm.lectureData = res.data.content
+      });
   },
   data() {
     return {
-      noticeData:'',
+      noticeData: [],
+      lectureData:[],
       leftArrow: require("../../static/img/left-arrow.png"),
       rightArrow: require("../../static/img/right-arrow.png"),
       sampleImage: require("../../static/img/classImage.png"),
@@ -55,6 +77,9 @@ export default {
     };
   },
   methods: {
+    lectureDetail(id){
+      this.$router.push({name:'lectureDetail',params:{id:id}});
+    },
     loginEdu() {
       console.log("Login Button Pressed");
     },
@@ -63,10 +88,10 @@ export default {
 </script>
 
 <style scoped>
-#text-lecture-list{
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 0.5rem 0rem 0.5rem 0.5rem;
+#text-lecture-list {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem 0rem 0.5rem 0.5rem;
 }
 #main-text {
   margin: 3rem 20% 2rem 20%;
@@ -102,17 +127,17 @@ export default {
   background-color: rgb(248, 247, 247);
 }
 
-#lecture-image{
-    display: flex;
-    height: auto;
-    align-content: center;
-    align-items: center;
-    padding: 0 0.5rem 1rem 0.5rem;
-    justify-content: space-between;
+#lecture-image {
+  display: flex;
+  height: auto;
+  align-content: center;
+  align-items: center;
+  padding: 0 0.5rem 1rem 0.5rem;
+  justify-content: space-between;
 }
 
 #left-arrow {
-    /* margin-top: ; */
+  /* margin-top: ; */
   height: 30px;
 }
 
@@ -120,7 +145,7 @@ export default {
   height: 30px;
 }
 
-#image-1 {
+.image-lecture {
   width: 180px;
   height: 120px;
   margin: 3px;

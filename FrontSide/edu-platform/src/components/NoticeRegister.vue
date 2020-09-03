@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     create() {
-
+      var vm = this;
        axios
         .post("http://" + IP.IP + ":8080/notice/newNotice", {
           title:this.inputTitle,
@@ -52,6 +52,7 @@ export default {
         .then((res) => {
           console.log("Create Notice Fin.");
           console.log(res);
+          vm.$router.go(-1);
         });
     },
   },

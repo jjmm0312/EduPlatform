@@ -10,12 +10,14 @@
         <!-- <span id="user-icon-box"> -->
         <img id="user-icon" :src="require('./assets/icon/user.png')" />
         <!-- </span> -->
-        <span v-on:click="loginButton" class="login-box-el">로그인</span>
-        <span v-on:click="signupButton" class="login-box-el">회원가입</span>
+        
+        <span v-if="ifNonmember" v-on:click="loginButton" class="login-box-el">로그인</span>
+        <span v-if="ifNonmember" v-on:click="signupButton" class="login-box-el">회원가입</span>
+        <span v-else v-on:click="signoutButton" class="login-box-el">로그아웃</span>
       </div>
     </div>
 
-    <div v-if="ifAdmin || ifNonmeber" class="menu-box">
+    <div v-if="ifAdmin || ifNonmember" class="menu-box">
       <button v-for="(menu,index) in menuNormal" v-bind:key="index" @click="normalMenu(index)">{{menu}}</button>
     </div>
     <div v-if="ifTeacher" class="menu-box">
@@ -56,9 +58,13 @@ export default {
 
         // this.dataset = res.data.payload;
       });
-
+      
+      var vm = this;
       EventBus.$on('login-success',()=>{
         console.log("Login Event Catch");
+        vm.ifNonmember = false,
+        vm.ifStudent = true;
+        vm.$router.replace({name:'main'}).catch(()=>{});
       }); // Login success message
   },
   name: "App",
@@ -66,16 +72,20 @@ export default {
     ifStudent: false,
     ifTeacher: false,
     ifAdmin: false,
-    ifNonmeber: true,
+    ifNonmember: true,
     menuNormal: ["학원소개", "강사소개", "강좌소개", "공지사항"],
     menuStudent: ["수강신청", "내 강좌", "학습현황", "공지사항"],
     menuTeacher: ["수강신청", "내 강좌", "학원관리", "공지사항"],
     titleImg: require("../static/img/titleJimin.jpeg"),
-    normalName:['intro','teacher_intro','notyet','notyet'],
+    normalName:['intro','teacher_intro','notyet','noticeList'],
   }),
   methods: {
+    signoutButton(){
+        this.$router.replace({name:'main'}).catch(()=>{});
+        this.changeAuth(4);
+    },
     gotohome(){
-      this.$router.replace({name:'main'}).catch(()=>{});
+      this.$router.push({name:'main'}).catch(()=>{});
     },
     normalMenu: function(index){
       console.log("normalMenu " + index);
@@ -91,7 +101,7 @@ export default {
       this.$router.push({name:"login"}).catch(() => {});
     },
     changeAuth(auth) {
-      this.ifStudent = this.ifTeacher = this.ifAdmin = this.ifNonmeber = false;
+      this.ifStudent = this.ifTeacher = this.ifAdmin = this.ifNonmember = false;
       if (auth == 0) {
         // 0 - admin,
         this.ifAdmin = true;
@@ -103,7 +113,7 @@ export default {
         this.ifStudent = true;
       } else if (auth == 4) {
         // 4 - nonmember
-        this.ifNonmeber = true;
+        this.ifNonmember = true;
       }
     },
   },

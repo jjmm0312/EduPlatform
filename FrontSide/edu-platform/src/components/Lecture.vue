@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-             <tr v-for="(data,index) in dataset" v-bind:key="index">
+             <tr v-for="(data,index) in dataset" v-bind:key="index" @click="classDetail(index+1)">
             <td style="width: 15%;">Class {{index+1}} .{{data.title}}</td>
             </tr>
            
@@ -44,6 +44,7 @@ import IP from "../../static/IP";
 
 
 export default {
+  props:["id"],
   mounted(){
       var vm = this;
 
@@ -71,7 +72,7 @@ export default {
   data() {
     return {
        dataset:[],
-      courseid:1,
+      courseid:this.id,
       lectureTitle:"",
       teacher:"",
       description:"",
@@ -82,6 +83,9 @@ export default {
     };
   },
   methods: {
+    classDetail(id){
+      this.$router.push({name:'classDetail',params:{id:id}})
+    },
     register() {
       console.log("register course");
       var vm = this;

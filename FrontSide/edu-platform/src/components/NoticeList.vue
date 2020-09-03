@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-             <tr v-for="(data,index) in dataset" v-bind:key="index">
+             <tr v-for="(data,index) in dataset" v-bind:key="index" @click="showDetailNotice(data.id)">
             <td>{{data.id}}</td>
             <td>{{data.title}}</td>
             <td>{{data.time}}</td>
@@ -55,7 +55,7 @@ export default {
 
       axios
         .get("http://" + IP.IP + ":8080/notice/noticeList", {
-          params: { size:10, page:pageid },
+          params: { size:10, page:pageid, sort:'id,desc' },
           timeout: 10000,
         })
         .then((res) => {
@@ -70,8 +70,12 @@ export default {
     };
   },
   methods: {
+    showDetailNotice(id){
+      this.$router.push({name:'noticeDetail',params:{id:id}}).catch(()=>{});
+    },
     register() {
-      console.log("Login Button Pressed");
+      console.log("New Notice");
+      this.$router.push({name:'noticeNew'}).catch(()=>{});
     },
   },
 };

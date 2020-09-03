@@ -28,6 +28,7 @@ import axios from "axios";
 import IP from "../../static/IP";
 
 export default {
+  props:["id"],
   mounted(){
       var vm = this;
 
@@ -44,7 +45,7 @@ export default {
   },
   data() {
     return {
-      noticeid:1,
+      noticeid:this.id,
       title:"",
       createdAt:"",
       content:"",
@@ -57,6 +58,7 @@ export default {
     },
     cancel() {
       console.log("cancel. move page.");
+      this.$router.go(-1);
     }
   },
 };
