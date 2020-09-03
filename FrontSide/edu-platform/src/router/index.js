@@ -11,6 +11,7 @@ import LectureList from '../components/LectureList.vue'
 import Lecture from '../components/Lecture.vue'
 import ClassDetail from '../components/ClassDetail.vue'
 import SignUpPage from '../components/SignUpPage.vue'
+import AcademyPage from '../components/AcademyIntro.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const route = [
   {
     path: '/',
     component: MainPage,
+    name:'main',
   },
   {
     path: '/login',
@@ -57,6 +59,11 @@ const route = [
     path:'/signup',
     component:SignUpPage,
     name:"signup"
+  },
+  {
+    path:'/intro',
+    component:AcademyPage,
+    name:'intro'
   }
 
   //   {

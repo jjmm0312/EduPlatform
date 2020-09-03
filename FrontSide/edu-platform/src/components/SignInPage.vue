@@ -57,9 +57,14 @@ export default {
           timeout: 10000,
         })
         .then((res) => {
+          console.log(res);
           if (res.data.status == 0)
             alert("로그인 오류입니다. 아이디와 비밀번호를 확인하세요.");
-          else EventBus.$emit("login-success");
+          else{ 
+            localStorage.setItem("accesstoken-untact", res.data.accessToken);
+            
+            EventBus.$emit("login-success");
+          }
         });
     },
   },

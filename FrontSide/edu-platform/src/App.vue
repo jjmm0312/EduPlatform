@@ -2,8 +2,8 @@
   <v-app>
     <div class="header-box">
       <div>
-      <img id="logo-icon" :src="require('../static/img/logo.png')"/>
-      <span>UntactEdu</span>
+      <img id="logo-icon" @click="gotohome" :src="require('../static/img/logo2.png')"/>
+      <!-- <span>UntactEdu</span> -->
       </div>
       <!-- <span>UntactEdu</span> -->
       <div class="login-box">
@@ -16,13 +16,13 @@
     </div>
 
     <div v-if="ifAdmin || ifNonmeber" class="menu-box">
-      <button v-for="(menu,index) in menuNormal" v-bind:key="index">{{menu}}</button>
+      <button v-for="(menu,index) in menuNormal" v-bind:key="index" @click="normalMenu(index)">{{menu}}</button>
     </div>
     <div v-if="ifTeacher" class="menu-box">
-      <button v-for="(menu,index) in menuStudent" v-bind:key="index">{{menu}}</button>
+      <button v-for="(menu,index) in menuStudent" v-bind:key="index" @click="studentMenu(index)">{{menu}}</button>
     </div>
     <div v-if="ifStudent" class="menu-box">
-      <button v-for="(menu,index) in menuTeacher" v-bind:key="index">{{menu}}</button>
+      <button v-for="(menu,index) in menuTeacher" v-bind:key="index" @click="teacherMenu(index)">{{menu}}</button>
     </div>
 
     <div id="cropping">
@@ -71,8 +71,16 @@ export default {
     menuStudent: ["수강신청", "내 강좌", "학습현황", "공지사항"],
     menuTeacher: ["수강신청", "내 강좌", "학원관리", "공지사항"],
     titleImg: require("../static/img/titleJimin.jpeg"),
+    normalName:['intro','teacher_intro','notyet','notyet'],
   }),
   methods: {
+    gotohome(){
+      this.$router.replace({name:'main'}).catch(()=>{});
+    },
+    normalMenu: function(index){
+      console.log("normalMenu " + index);
+      this.$router.push({name:this.normalName[index]}).catch(()=>{});
+    },
     signupButton(){
       console.log("Signup Button Pressed");
       this.$router.push({name:"signup"}).catch(()=>{});
@@ -118,7 +126,7 @@ export default {
   /* align-items: center; */
   /* align-content: space-between; */
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   /* flex-wrap: wrap; */
 }
 .login-box {
@@ -162,8 +170,8 @@ export default {
 
 #logo-icon {
   display: inline;
-  width: 5%;
-  height: auto;
+  height: 60px;
+  width: auto;
 }
 
 .footer-box {

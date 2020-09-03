@@ -21,26 +21,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>학원생 여러분들에게 알려드립니다.</td>
-            </tr>
-            <tr>
-              <td>첫번째 칸</td>
-            </tr>
-            <tr>
-              <td>첫번째 칸</td>
-            </tr>
-            <!-- <tr v-for="(data,index) in dataset" v-bind:key="index">
+            <tr v-for="(data,index) in dataset" v-bind:key="index">
             <td>{{data.name}}</td>
-            <td>{{data.memo}}</td>
-            <td>{{data.location}}</td>
-            <td>{{data.protocol}}</td>
-            <td>{{data.type}}</td>
-            <td>{{data.time}}</td>
-            <td>
-              <button v-on:click="selectDevice(index)" class="btn btn-primary">관리</button>
-            </td>
-            </tr>-->
+            </tr>
           </tbody>
 
           <!-- 첫번째 줄 끝 -->
@@ -57,8 +40,13 @@
 
 <script>
 export default {
+  mounted() {
+    // 1. 공지사항을 가져와야 함
+    // 2. 상황에 맞게, 강좌목록인지, 아닌지 판단해야 함.
+  },
   data() {
     return {
+      noticeData:'',
       leftArrow: require("../../static/img/left-arrow.png"),
       rightArrow: require("../../static/img/right-arrow.png"),
       sampleImage: require("../../static/img/classImage.png"),
