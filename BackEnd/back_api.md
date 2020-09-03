@@ -74,4 +74,18 @@
 
   * *<u>**추후논의**</u>*
 
-  
+
+
+
+
+
+
+
+* 공지사항 목록 가져오기 - 철
+  * GET / page
+* 공지사항 글 상세 - 철
+  * GET / noticeID
+* 공지사항 작성 - 철
+  * POST / title, content
+* 공지사항 수정 - 철
+  * POST / noticeID, title, content
