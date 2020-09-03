@@ -16,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.AllArgsConstructor;
 import vaninside.eduplatform.security.JwtAuthenticationEntryPoint;
@@ -89,7 +92,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 //.hasRole("STUDENT")
             .permitAll() // 현재 테스트 단계이므로 모두 허가합니다.
             .anyRequest()
-                .authenticated();
+                .authenticated().and().cors();
 
 		// Add our custom JWT security filter
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
@@ -103,6 +106,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 "/swagger-ui.html", "/webjars/**", "/swagger/**");
     }
 	
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        // - (3)
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     
 /*
     @Override

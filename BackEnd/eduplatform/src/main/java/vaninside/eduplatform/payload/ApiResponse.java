@@ -34,4 +34,8 @@ public class ApiResponse {
     public int getStatus() {
     	return status;
     }
+    
+    public String toStr() {
+    	return "{\"status\":"+status+"}";
+    }
 }

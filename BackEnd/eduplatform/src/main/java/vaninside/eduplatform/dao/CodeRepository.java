@@ -7,6 +7,7 @@ import vaninside.eduplatform.entity.Code;
 public interface CodeRepository extends JpaRepository<Code, Integer>{
 	Boolean existsByTeacher(String teacher);
 	Boolean existsByStudent(String student);
+	Code findById(int id);
 	
 	
 }

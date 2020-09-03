@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 
+import vaninside.eduplatform.dao.AcademyRepository;
 import vaninside.eduplatform.dao.CodeRepository;
 import vaninside.eduplatform.dao.MemberDao;
 import vaninside.eduplatform.dao.UserRepository;
+import vaninside.eduplatform.entity.Academy;
 import vaninside.eduplatform.entity.Code;
 import vaninside.eduplatform.entity.User;
 
@@ -20,15 +22,26 @@ public class AuthService {
 	@Autowired
 	CodeRepository codeRepository;
 	
+	@Autowired
+	AcademyRepository academyRepository;
+	
     @Autowired
     private PasswordEncoder passwordEncoder;
 	
 	private static SecureRandom random = new SecureRandom();
 	
 	public void init() {
+		// Create Admin Account
 		createAdmin();
+		
+		// Create Invite Code
 		Code code = new Code(generateCode(), generateCode());
 		codeRepository.save(code);
+		
+		// Create Academy
+		Academy academy = new Academy("UntactEdu", null, null, "UntactEdu / 서울시 동작구 상도1동 \r\n" + 
+				"Tel. 010. 1234. 3285", "안녕하세요. 온라인 교육 플랫폼입니다.");
+		academyRepository.save(academy);
 	}
 
     public static String generateCode() {

@@ -1,6 +1,7 @@
 package vaninside.eduplatform.entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,10 +34,8 @@ public class Course {
 	@JoinColumn(name = "teacher_id")
 	private User teacher;
 	
-	/*
 	@CreationTimestamp
-    private Date created_at;
-	*/
+    private Timestamp date;
 	
 	public Course() {}
 	

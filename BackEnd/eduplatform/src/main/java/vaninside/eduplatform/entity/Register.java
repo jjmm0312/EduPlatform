@@ -1,5 +1,7 @@
 package vaninside.eduplatform.entity;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
@@ -30,6 +33,8 @@ public class Register {
 		@JoinColumn(name = "student_id")
 		User student;
 		
+		@CreationTimestamp
+	    private Timestamp date;
 		
 		int agree;
 		
