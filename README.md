@@ -50,9 +50,7 @@ Database : MySQL
 
 ## Demo
 
-[데모이미지 첨부]
-
-
+![데모](https://github.com/jjmm0312/EduPlatform/blob/master/%EA%B5%90%EC%9C%A1%EB%8D%B0%EB%AA%A8.PNG)
 
 ---
 
@@ -72,9 +70,7 @@ API 문서 : 서버 실행 후, http://localhost:8080/swagger-ui.html 에서 확
 
 ## 시스템 구조
 
-[ 그림 첨부 ]
-
-
+![아키텍쳐](https://github.com/jjmm0312/EduPlatform/blob/master/%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90.png)
 
 1)  회원관리 서비스 : Spring Security와 Jwt 토큰을 적용하여, 회원가입과 로그인을 통해 웹페이지 접근 권한을 관리합니다.
 
