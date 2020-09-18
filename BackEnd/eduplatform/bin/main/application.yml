@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    password: dlcjf2779!
+    url: jdbc:mysql://101.101.217.226:3306/untactedu?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  jwt:
+    secret: jimin
+  servlet:
+    enabled: true
+    max-file-size: 1000MB
+    max-request-size: 1000MB
+   
